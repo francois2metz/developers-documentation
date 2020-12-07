@@ -177,6 +177,95 @@ Returns 200 OK
 
 --- row ---
 
+## Get Account Usage
+
+--- row ---
+
+`GET https://$SCALINGO_API_URL/v1/account/usage`
+
+Get the account usage betwen two given dates.
+
+### Parameters
+
+* `from`: get the account usage starting at this date.
+* `to`: get the account usage up to this date.
+
+Both dates must be in the form `YYYY-MM-DD` and are optional.
+
+||| col |||
+
+Example Request
+
+```shell
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -X GET https://$SCALINGO_API_URL/v1/account/usage?from=2020-10-01&to=2020-11-01
+```
+
+Returns 200 OK
+
+```json
+{
+  "usage": {
+      "app": "my-app",
+      "app_id": "5343eccd646173000a140000",
+      "status": "running",
+      "runtimes": [{
+        "size": {
+          "id": "b46b1a69-085f-4b9a-ba01-241bd6f658fb",
+          "human_cpu": "standard CPU priority",
+          "name": "M",
+          "human_name": "M",
+          "memory": 536870912,
+          "ordinal": 3,
+          "hourly_price": 20,
+          "thirtydays_price": 1440,
+          "sku": "osc-fr1-app-M"
+        },
+        "price": 1.65,
+        "duration": 4949,
+      }],
+      "addon_usages": [{
+        "addon": {
+          "id": "ad-c488c1a9-72ca-4bb1-9ac4-08e47281a2aa",
+          "app_id": "5f2abcb8bb7bad000103bc1e",
+          "resource_id": "my_app_4724",
+          "addon_provider": {
+            "id": "mysql",
+            "name": "MySQL",
+            "logo_url": "//cdn.scalingo.com/addons/Scalingo_MySQL.svg"
+          },
+          "plan": {
+            "id": "5f58e6886f339c0001297383",
+            "name": "mysql-sandbox",
+            "display_name": "Sandbox",
+            "price": 0,
+            "description": "<p>Scalingo MySQL addon</p>\n",
+            "position": 0,
+            "on_demand": false,
+            "disabled": false,
+            "disabled_alternative_plan_id": null,
+            "sku": "osc-fr1-mysql-sandbox"
+          },
+        },
+        "price": 1.65,
+        "runtime": 4949,
+        "provisioned_at": "2020-10-02T08:04:37.248Z",
+        "status": "running",
+        "deprovisioned_at": null,
+
+      }],
+      "first_month": "8/2020"
+    }, {
+      "app": "my-app-2",
+      ...
+    }
+  }
+}
+```
+
+--- row ---
+
 ## Delete User Account
 
 --- row ---
