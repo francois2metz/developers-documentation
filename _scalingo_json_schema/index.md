@@ -167,7 +167,7 @@ The only `options` field is `version` which contains the version to deploy (e.g.
 
 The formation is the definition of the container which will be started once the
 application is deployed. (Either coming from a one-click deployment button, or
-a review app from the github integration)
+a review app from the GitHub integration)
 
 It should be a map of container type definitions, the key should be the type name
 and the value should have the following structure:
@@ -210,7 +210,7 @@ Example:
 | field          | type   | description                                                                                     |
 | -------------- | ------ | ----------------------------------------------------------------------------------------------- |
 | postdeploy     | string | Command and arguments of the script you want to execute after each deployment.                  |
-| first-deploy   | string | Job to run as postdelpoy hook at the first deployment of a reivew app or one-click deployed app |
+| first-deploy   | string | Job to run as postdelpoy hook at the first deployment of a review app or one-click deployed app |
 
 You can get more information on this feature on the [dedicated page](https://doc.scalingo.com/platform/app/postdeploy-hook#workflow).
 
