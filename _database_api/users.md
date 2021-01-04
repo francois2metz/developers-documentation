@@ -32,7 +32,7 @@ Example object:
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db]/users`
+`GET https://$DB_API_URL/api/databases/[:db]/users`
 
 List all users for a database.
 
@@ -41,7 +41,7 @@ List all users for a database.
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/databases/my-db-123/users
+  -X GET https://$DB_API_URL/api/databases/my-db-123/users
 ```
 
 Returns 200 OK
@@ -68,7 +68,7 @@ Returns 200 OK
 
 --- row ---
 
-`POST https://db-api.scalingo.com/api/databases/[:db]/users`
+`POST https://$DB_API_URL/api/databases/[:db]/users`
 
 Create a new user on the given database. The HTTP query returns 201.
 
@@ -83,7 +83,7 @@ Create a new user on the given database. The HTTP query returns 201.
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X POST https://db-api.scalingo.com/api/databases/my-db-123/users -d \
+  -X POST https://$DB_API_URL/api/databases/my-db-123/users -d \
   '{
     "database_user": {
       "database_id": "5c599fd6f18b3202f7ab4e66",
@@ -112,14 +112,14 @@ Returns 201 Created
 
 --- row ---
 
-`DELETE https://db-api.scalingo.com/api/databases/[:db]/users/[:username]`
+`DELETE https://$DB_API_URL/api/databases/[:db]/users/[:username]`
 
 ||| col |||
 
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X DELETE https://db-api.scalingo.com/api/databases/my-db-123/users/my-user
+  -X DELETE https://$DB_API_URL/api/databases/my-db-123/users/my-user
 ```
 
 Returns 204 No Content

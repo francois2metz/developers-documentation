@@ -84,7 +84,7 @@ Example object:
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db_id]`
+`GET https://$DB_API_URL/api/databases/[:db_id]`
 
 Retrieve information of a specific database.
 
@@ -99,7 +99,7 @@ Example request
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/databases/my-db-123
+  -X GET https://$DB_API_URL/api/databases/my-db-123
 ```
 
 Returns 200 OK
@@ -137,11 +137,11 @@ Returns 200 OK
 
 --- row ---
 
-`PATCH https://db-api.scalingo.com/api/databases/[:db_id]`
+`PATCH https://$DB_API_URL/api/databases/[:db_id]`
 
 or
 
-`PUT https://db-api.scalingo.com/api/databases/[:db_id]`
+`PUT https://$DB_API_URL/api/databases/[:db_id]`
 
 Update database settings.
 
@@ -152,7 +152,7 @@ Example request
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X PATCH https://db-api.scalingo.com/api/databases/my-db-123 \
+  -X PATCH https://$DB_API_URL/api/databases/my-db-123 \
   -d '{
     "database": {
       "periodic_backups_enabled": true,
@@ -196,7 +196,7 @@ Returns 200 OK
 
 --- row ---
 
-`POST https://db-api.scalingo.com/api/databases/[:db_id]/pitr/restore`
+`POST https://$DB_API_URL/api/databases/[:db_id]/pitr/restore`
 
 Restore the database data at a specific point in time. This is currently only
 available for PostgreSQL databases.
@@ -208,7 +208,7 @@ Example request
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X POST https://db-api.scalingo.com/api/databases/my-db-123/pitr/restore \
+  -X POST https://$DB_API_URL/api/databases/my-db-123/pitr/restore \
   -d '{
     "restore_time": "2019-07-18T23:00:00Z"
   }'
@@ -228,7 +228,7 @@ Returns 201 Created
 
 --- row ---
 
-`POST https://db-api.scalingo.com/api/databases/[:db_id]/action`
+`POST https://$DB_API_URL/api/databases/[:db_id]/action`
 
 This generic endpoint aims at wrapping direct actions over the running
 database. The different possible actions depend on the type of the database,

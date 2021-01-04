@@ -11,7 +11,7 @@ layout: default
 
 --- row ---
 
-`GET https://db-api.scalingo.com/dapi/databases/[:database_id]/logs`
+`GET https://$DB_API_URL/dapi/databases/[:database_id]/logs`
 
 {:.table}
 | field | type   | description                              |
@@ -29,7 +29,7 @@ Example request
 ```sh
 curl -H "Accent: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/my-awesome-db-1234/metrics
+  -X GET https://$DB_API_URL/api/my-awesome-db-1234/metrics
 ```
 
 Returns 200 OK
@@ -39,5 +39,3 @@ Returns 200 OK
   "url": "https://logs.scalingo.com/apps/59e6641ab8c6f11f89d0b950/logs?token=authentication_token"
 }
 ```
-
-
