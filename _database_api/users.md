@@ -64,59 +64,62 @@ Returns 200 OK
 
 --- row ---
 
-## Create a New Backup
+## Create a New User
 
 --- row ---
 
-`POST https://db-api.scalingo.com/api/databases/[:db]/backups`
+`POST https://db-api.scalingo.com/api/databases/[:db]/users`
 
-Schedule the creation of a new backup. This query is asynchronous. The HTTP
-query returns 201 and the backup creation is actually started asynchronously.
+Create a new user on the given database. The HTTP query returns 201.
+
+### Parameters
+
+* `name`: Should have between 6 and 32 lower case alphanumerical characters and hyphens. It can't have an hyphen at the beginning or at the end, nor two hyphens in a row.
+* `password` and `password_confirmation`: (*Optional*) Password of the new user. If none is provided, Scalingo will generate one and display it in a toast notification.
+* `read_only`: Should the new user be read only?
 
 ||| col |||
 
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X POST https://db-api.scalingo.com/api/databases/my-db-123/backups
+  -X POST https://db-api.scalingo.com/api/databases/my-db-123/users -d \
+  '{
+    "database_user": {
+      "database_id": "5c599fd6f18b3202f7ab4e66",
+      "name": "my-user",
+      "read_only": false,
+      "password": null,
+      "password_confirmation": null
+    }
+  }'
 ```
 
 Returns 201 Created
 
 ```json
 {
-  "id": "5b8b36104ffb090be1ac3ce1",
-  "created_at": "2019-07-18T03:00:00.178+02:00",
-  "name": "20180902010000_kibana-3938",
-  "size": 0,
-  "status": "pending",
-  "database_id": "597601234ffb097af4f3099b",
-  "type": "postgresql"
+  "name": "my-user",
+  "read_only": false,
+  "password": "K-j9UbDpdbok8Yy4sLcl"
 }
 
 ```
 
 --- row ---
-## Get a Backup Download Link
+
+## Delete a User
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db]/backups/[:backup]/archive`
-
-Get a pre-signed URL to download your backup
+`DELETE https://db-api.scalingo.com/api/databases/[:db]/users/[:username]`
 
 ||| col |||
 
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/databases/my-db-123/backups/abcdefabcdefabcdef/archive
+  -X DELETE https://db-api.scalingo.com/api/databases/my-db-123/users/my-user
 ```
 
-Returns 200 OK
-
-```json
-{
-  "download_url": "https://db-api.scalingo.com/api/databases/my-db-123/backups/5b8a36104ffb090be1ac3ce1/download?token=token1234"
-}
-```
+Returns 204 No Content
