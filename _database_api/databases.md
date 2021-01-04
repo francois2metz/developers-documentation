@@ -47,8 +47,8 @@ Example object:
 {
   "database": {
     "id": "5c599fd6f18b3202f7ab4e66",
-    "resource_id": "lolapp-2107",
-    "app_name": "lolapp",
+    "resource_id": "my-db-123",
+    "app_name": "my-app",
     "created_at": "2019-02-05T15:38:14.343+01:00",
     "encryption_at_rest": true,
     "features": [
@@ -108,8 +108,8 @@ Returns 200 OK
 {
   "database": {
     "id": "5c599fd6f18b3202f7ab4e66",
-    "resource_id": "lolapp-2107",
-    "app_name": "lolapp",
+    "resource_id": "my-db-123",
+    "app_name": "my-app",
     "created_at": "2019-02-05T15:38:14.343+01:00",
     "encryption_at_rest": true,
     "features": [
@@ -167,8 +167,8 @@ Returns 200 OK
 {
   "database": {
     "id": "5c599fd6f18b3202f7ab4e66",
-    "resource_id": "lolapp-2107",
-    "app_name": "lolapp",
+    "resource_id": "my-db-123",
+    "app_name": "my-app",
     "created_at": "2019-02-05T15:38:14.343+01:00",
     "encryption_at_rest": true,
     "features": [
