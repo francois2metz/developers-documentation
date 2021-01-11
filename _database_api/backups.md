@@ -43,7 +43,7 @@ Example object:
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db]/backups`
+`GET https://$DB_API_URL/api/databases/[:db]/backups`
 
 List all backups for a database
 
@@ -52,7 +52,7 @@ List all backups for a database
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/databases/my-db-123/backups
+  -X GET https://$DB_API_URL/api/databases/my-db-123/backups
 ```
 
 Returns 200 OK
@@ -98,7 +98,7 @@ Returns 200 OK
 
 --- row ---
 
-`POST https://db-api.scalingo.com/api/databases/[:db]/backups`
+`POST https://$DB_API_URL/api/databases/[:db]/backups`
 
 Schedule the creation of a new backup. This query is asynchronous. The HTTP
 query returns 201 and the backup creation is actually started asynchronously.
@@ -108,7 +108,7 @@ query returns 201 and the backup creation is actually started asynchronously.
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X POST https://db-api.scalingo.com/api/databases/my-db-123/backups
+  -X POST https://$DB_API_URL/api/databases/my-db-123/backups
 ```
 
 Returns 201 Created
@@ -131,7 +131,7 @@ Returns 201 Created
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db]/backups/[:backup]/archive`
+`GET https://$DB_API_URL/api/databases/[:db]/backups/[:backup]/archive`
 
 Get a pre-signed URL to download your backup
 
@@ -140,14 +140,13 @@ Get a pre-signed URL to download your backup
 ```shell
 curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/databases/my-db-123/backups/abcdefabcdefabcdef/archive
+  -X GET https://$DB_API_URL/api/databases/my-db-123/backups/abcdefabcdefabcdef/archive
 ```
 
 Returns 200 OK
 
 ```json
 {
-  "download_url": "https://db-api.scalingo.com/api/databases/my-db-123/backups/5b8a36104ffb090be1ac3ce1/download?token=token1234"
+  "download_url": "https://$DB_API_URL/api/databases/my-db-123/backups/5b8a36104ffb090be1ac3ce1/download?token=token1234"
 }
 ```
-

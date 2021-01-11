@@ -9,7 +9,7 @@ layout: default
 
 ## Get Database Metrics
 
-`GET https://db-api.scalingo.com/api/databases/[:database_id]/metrics`
+`GET https://$DB_API_URL/api/databases/[:database_id]/metrics`
 
 ### Database Metrics
 
@@ -98,7 +98,7 @@ Example request
 ```sh
 curl -H "Accent: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/my-awesome-db-1234/metrics
+  -X GET https://$DB_API_URL/api/my-awesome-db-1234/metrics
 ```
 
 Returns 200 OK
@@ -148,7 +148,7 @@ Returns 200 OK
 
 --- row ---
 
-`GET https://db-api.scalingo.com/api/databases/[:db_id]/health`
+`GET https://$DB_API_URL/api/databases/[:db_id]/health`
 
 {:.table}
 | field   | type      | description                               |
@@ -166,7 +166,7 @@ Example request
 ```sh
 curl -H "Accent: application/json" \
   -H "Authorization: Bearer $DB_BEARER_TOKEN" \
-  -X GET https://db-api.scalingo.com/api/my-awesome-db-1234/health
+  -X GET https://$DB_API_URL/api/my-awesome-db-1234/health
 ```
 
 Returns 200 OK
@@ -179,4 +179,3 @@ Returns 200 OK
   "pending_tasks": "0"
 }
 ```
-
