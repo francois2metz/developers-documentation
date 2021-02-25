@@ -506,7 +506,7 @@ _When:_ The plan of the addon has been changed
 | ------------------- | ------ | ----------------------------------- |
 | addon_provider_name | string | Name of the addon provider          |
 | old_plan_name       | string | Previous plan of the addon          |
-| plan_name           | string | Plan associated to the addon        |
+| new_plan_name       | string | New plan associated to the addon    |
 | resource_id         | string | Resource ID given by addon provider |
 
 ||| col |||
@@ -528,7 +528,7 @@ Example object:
   "type_data": {
     "addon_provider_name": "scalingo-mysql",
     "old_plan_name" : "free",
-    "plan_name" : "1g",
+    "new_plan_name" : "1g",
     "resource_id": "0abcdef-123456-bcccde-1bcdef"
   }
 }
