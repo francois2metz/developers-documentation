@@ -23,6 +23,7 @@ layout: default
 | links               | object  | object of related link like `deployments_stream` |
 | force_https         | boolean | activation of force HTTPS                        |
 | flags               | object  | list of flags associated to the app              |
+| limits              | object  | list of limits associated to the app             |
 | sticky_session      | boolean | activation of sticky session                     |
 | router_logs         | boolean | activation of the router logs in your app logs   |
 | last_deployed_at    | date    | date of the last deployment attempt              |
@@ -54,6 +55,9 @@ Example object:
   },
   "flags": {
     "sticky-session": true
+  },
+  "limits": {
+    "git-repository-size": 1000000000
   },
   "url": "https://example-app.scalingo.io",
   "links": {
@@ -175,7 +179,7 @@ Returns 200 OK
 
 Display a precise application
 
-The status field can take different values depending on your application state:
+The `status` field can take different values depending on your application state:
 
 - `new`: Your app has just been created
 - `running`: Your app has at least one container running
@@ -184,6 +188,10 @@ The status field can take different values depending on your application state:
 - `restarting`: You triggered a restart operation
 - `scaling`: You triggered a scale operation
 - `booting`: You are deploying a new version of your application
+
+The `limits` field is only present when a manual limit was specified by a Scalingo operator.
+
+The default limits of an app are consequently not present.
 
 ||| col |||
 
@@ -219,7 +227,10 @@ Returns 200 OK
     },
     "force_https": true,
     "sticky_session": false,
-    "router_logs": true
+    "router_logs": true,
+    "limits": {
+      "git-repository-size": 1000000000
+    }
   }
 }
 ```
