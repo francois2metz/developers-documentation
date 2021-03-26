@@ -241,6 +241,81 @@ Returns 200 OK
 
 --- row ---
 
+`GET https://$SCALINGO_API_URL/v1/apps/[:app]/ps`
+
+Lists the different containers of a given application.
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -X GET 'https://$SCALINGO_API_URL/v1/apps/example-app/ps'
+```
+
+Returns 200 OK
+
+```json
+{
+  "containers": [
+    {
+      "id": "6054bcc56d80de00682f7a18",
+      "type": "web",
+      "type_index": 1,
+      "created_at": "2021-03-19T15:01:25.088Z",
+      "deleted_at": null,
+      "state": "running",
+      "size": "",
+      "command": "",
+      "container_size": {
+        "id": "b46b1a69-085f-4b9a-ba01-241bd6f658fb",
+        "human_cpu": "standard CPU priority",
+        "name": "M",
+        "human_name": "M",
+        "memory": 536870912,
+        "ordinal": 3,
+        "hourly_price": 20,
+        "thirtydays_price": 1440,
+        "pids_limit": 0,
+        "swap": 0,
+        "sku": "osc-fr1-app-M"
+      }
+    },
+    {
+      "id": "6059fd0e6d80de005d85ca1a",
+      "type": "one-off",
+      "type_index": 9410,
+      "created_at": "2021-03-23T14:37:02.102Z",
+      "deleted_at": null,
+      "state": "booting",
+      "size": "",
+      "command": "bash",
+      "container_size": {
+        "id": "b46b1a69-085f-4b9a-ba01-241bd6f658fb",
+        "human_cpu": "standard CPU priority",
+        "name": "M",
+        "human_name": "M",
+        "memory": 536870912,
+        "ordinal": 3,
+        "hourly_price": 20,
+        "thirtydays_price": 1440,
+        "pids_limit": 0,
+        "swap": 0,
+        "sku": "osc-fr1-app-M"
+      }
+    }
+  ]
+}
+```
+
+--- row ---
+
+## Get Container Types List
+
+--- row ---
+
 `GET https://$SCALINGO_API_URL/v1/apps/[:app]/containers`
 
 This request lists the different container types of a given application. It includes
@@ -248,7 +323,7 @@ how many containers and the size of the containers for each type.
 
 --- row ---
 
-**Container attributes**
+**Container type attributes**
 
 {:.table}
 | field          | type    | description                                     |
