@@ -692,7 +692,7 @@ Returns 200 OK
 
 ## Run a One-off Container
 
-Similar to `scalingo run`
+Endpoint used by `scalingo run`
 
 --- row ---
 
@@ -709,7 +709,6 @@ executed in the environment of your application.
 * `env` (*object*): Environment variables to inject into the container (additionally to those of your apps)
 * `size` (*string*, default `"M"`): Size of the container (e.g. S, M, etc)
 * `detached` (*boolean*, default `false`): Foreground task by default, set to `true` if the container has to be run in background.
-
 
 ### Background vs Foreground One-off
 
@@ -758,6 +757,37 @@ Returns 200 OK
   "attach_url": "http://run-1.scalingo.com:5000/f15d8c7fb4170c4ef14b63b2b265c8fa3dbf4a5882de19682a21f6243ae332c6"
 }
 ```
+
+--- row ---
+
+## Stop a Container
+
+Endpoint used by `scalingo one-off-stop`.
+
+--- row ---
+
+`POST https://$SCALINGO_API_URL/v1/apps/[:app]/containers/[:container_id]/stop`
+
+Asynchronously stops a running container. **Only one-off** containers can be
+stopped that way.
+
+You may have started a one-off container in background. This is also called a
+detached one-off. This endpoint will trigger an asynchronous stop of the
+one-off container. The container state becomes `stopping` after it returns but
+the container is not instantly stopped. It follows the
+[standard container shutdown lifecycle](https://doc.scalingo.com/platform/internals/container-management#shutdown-of-old-containers)
+
+||| col |||
+
+Example request:
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -X POST 'https://$SCALINGO_API_URL/v1/apps/example-app/containers/6054bcc56d80de00682f7a18/stop'
+```
+
+Returns 202 Accepted
 
 --- row ---
 
