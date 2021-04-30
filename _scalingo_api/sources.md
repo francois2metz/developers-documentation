@@ -45,7 +45,7 @@ deleted from our storage backend after the links have expired.
 The `upload_url` is designed to be used in a `PUT` HTTP Request:
 
 ```
-curl -L -X PUT --upload-file ./archive.tar.gz 'https://$SCALINGO_API_URL/v1/sources/123e4567-e89b-12d3-a456-426655440000?token=dc958153c3cd32659ffad5deeda9405d'
+curl -L -H "Content-Type: application/x-gzip" -X PUT --upload-file ./archive.tar.gz 'https://$SCALINGO_API_URL/v1/sources/123e4567-e89b-12d3-a456-426655440000?token=dc958153c3cd32659ffad5deeda9405d'
 ```
 
 The `download_url` is designed to be used in a `GET` HTTP Request:
