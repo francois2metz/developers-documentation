@@ -192,6 +192,53 @@ Returns 200 OK
 
 --- row ---
 
+## Upgrade a database
+
+--- row ---
+
+`POST https://$DB_API_URL/api/databases/[:db_id]/upgrade`
+
+Upgrade the database to the next available version.
+
+||| col |||
+
+Example request
+
+```shell
+curl -H "Accept: application/json" \
+  -H "Authorization: Bearer $DB_BEARER_TOKEN" \
+  -X POST https://$DB_API_URL/api/databases/my-db-123/upgrade
+```
+
+Returns 202 Accepted (Asynchronous task)
+
+Headers:
+  * `Location`: 'https://db-api.osc-fr1.scalingo.com/api/operations/609145e66ffbd934f6745bb4'
+
+```json
+{
+  "message": "Database upgrade to 12.6.0-1 is pending",
+  "build": 1,
+  "created_at": "2021-03-23T10:00:09.498+01:00",
+  "database_type_id": "5d0b95b801dcea2f34b18f1a",
+  "deleted_at": null,
+  "features": [
+    "tls"
+  ],
+  "major": 12,
+  "minor": 6,
+  "patch": 0,
+  "release_number": 230,
+  "updated_at": "2021-03-23T10:00:09.498+01:00",
+  "warning_message": "",
+  "allowed_plugins": [],
+  "id": "6051fe19406c31aaafd31a05"
+}
+```
+
+
+--- row ---
+
 ## Point-in-Time Restoration
 
 --- row ---
