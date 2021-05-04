@@ -196,7 +196,7 @@ Returns 200 OK
 
 --- row ---
 
-`POST https://$DB_API_URL/api/databases/[:db_id/upgrade]`
+`POST https://$DB_API_URL/api/databases/[:db_id]/upgrade`
 
 Upgrade the database to the next available version.
 
