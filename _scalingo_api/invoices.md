@@ -13,14 +13,27 @@ layout: default
 | field                | type    | description                                 |
 | -------------------  | ------- | ------------------------------------------- |
 | id                   | string  | unique ID                                   |
-| total_price          | float   | price of this invoice                       |
-| total_price_with_vat | float   | price of this invoice including VAT         |
+| total_price          | integer | price of this invoice (cents)               |
+| total_price_with_vat | integer | price of this invoice including VAT (cents) |
 | billing_month        | date    | this invoice is related to this month       |
 | pdf_url              | string  | URL to download the PDF invoice             |
 | invoice_number       | string  | the invoice number                          |
 | state                | string  | state of this invoice (new, paid or failed) |
-| vat_rate             | float   | the VAT rate applied to this invoice        |
-| items                | object  | the list of item to pay                     |
+| vat_rate             | integer | the VAT rate applied to this invoice (in ‰) |
+| items                | array   | the list of item to pay, present on the doc |
+| detailed_items       | array   | detail breakdown of the consumption         |
+
+
+**Invoice Item attributes**
+
+{:.table}
+| field      | type    | description                                         |
+| ---------  | ------- | --------------------------------------------------- |
+| id         | string  | unique ID                                           |
+| label      | string  | label of the invoice entry                          |
+| price      | integer | price of the item (cents)                           |
+| app        | string  | (detailed items only) name of the app               |
+| duration   | integer | (detailed items only) minutes charged for this item |
 
 ||| col |||
 
@@ -30,41 +43,43 @@ Example object:
 {
 	"invoice": {
 		"id": "23d2c27f-bac0-4038-b3d7-2e6f06f3d27a",
-		"total_price": 0.0,
-		"total_price_with_vat": 0.0,
-		"billing_month": "2016-08-01",
+		"total_price": 0,
+		"total_price_with_vat": 0,
+		"billing_month": "2020-08-01",
 		"pdf_url": "https://download.scalingo.com/invoices/23d2c27f-bac0-4038-b3d7-2e6f06f3d27a/download",
-		"invoice_number": "2016-09-1442",
+		"invoice_number": "2020-09-1442",
 		"state": "paid",
-		"vat_rate": 0.2,
+		"vat_rate": 200,
 		"items": [
 			{
 				"id": "57c826d022fcfa0012ae9ae9",
 				"label": "Containers Runtime",
-				"price": 22.0
+				"price": 2200
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aea",
 				"label": "Addons",
-				"price": 0.0
+				"price": 0
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aeb",
-				"label": "Free Trial 2016-06-02 15:07 -> 2016-09-30 15:07",
-				"price": -22.0
+				"label": "Free Trial 2020-06-02 15:07 -> 2020-09-30 15:07",
+				"price": -2200
 			}
 		],
 		"detailed_items": [
 			{
 				"id": "57c826d022fcfa0012ae9aec",
 				"label": "Containers - type: web- size: M",
-				"price": 0.0,
+				"price": 0,
+        "duration": 0,
 				"app": "example-app"
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aed",
 				"label": "Containers - type: web- size: S",
-				"price": 7.25,
+				"price": 725,
+        "duration": 43200,
 				"app": "example-app"
 			},
 			// …
@@ -98,41 +113,41 @@ Returns 200 OK
 	"invoices": [
 		{
 			"id": "23d2c27f-bac0-4038-b3d7-2e6f06f3d27a",
-			"total_price": 0.0,
-			"total_price_with_vat": 0.0,
-			"billing_month": "2016-08-01",
+			"total_price": 0,
+			"total_price_with_vat": 0,
+			"billing_month": "2020-08-01",
 			"pdf_url": "https://download.scalingo.com/invoices/23d2c27f-bac0-4038-b3d7-2e6f06f3d27a/download",
-			"invoice_number": "2016-09-1442",
+			"invoice_number": "2020-09-1442",
 			"state": "paid",
-			"vat_rate": 0.2,
+			"vat_rate": 200,
 			"items": [
 				{
 					"id": "57c826d022fcfa0012ae9ae9",
 					"label": "Containers Runtime",
-					"price": 22.0
+					"price": 2200
 				},
 				{
 					"id": "57c826d022fcfa0012ae9aea",
 					"label": "Addons",
-					"price": 0.0
+					"price": 0
 				},
 				{
 					"id": "57c826d022fcfa0012ae9aeb",
-					"label": "Free Trial 2016-06-02 15:07 -> 2016-09-30 15:07",
-					"price": -22.0
+					"label": "Free Trial 2020-06-02 15:07 -> 2020-09-30 15:07",
+					"price": -2200
 				}
 			],
 			"detailed_items": [
 				{
 					"id": "57c826d022fcfa0012ae9aec",
 					"label": "Containers - type: web- size: M",
-					"price": 0.0,
+					"price": 0,
 					"app": "example-app"
 				},
 				{
 					"id": "57c826d022fcfa0012ae9aed",
 					"label": "Containers - type: web- size: S",
-					"price": 7.25,
+					"price": 725,
 					"app": "example-app"
 				},
 				// …
@@ -180,41 +195,41 @@ Returns 200 OK
 {
 	"invoice": {
 		"id": "23d2c27f-bac0-4038-b3d7-2e6f06f3d27a",
-		"total_price": 0.0,
-		"total_price_with_vat": 0.0,
-		"billing_month": "2016-08-01",
+		"total_price": 0,
+		"total_price_with_vat": 0,
+		"billing_month": "2020-08-01",
 		"pdf_url": "https://download.scalingo.com/invoices/23d2c27f-bac0-4038-b3d7-2e6f06f3d27a/download",
-		"invoice_number": "2016-09-1442",
+		"invoice_number": "2020-09-1442",
 		"state": "paid",
-		"vat_rate": 0.2,
+		"vat_rate": 200,
 		"items": [
 			{
 				"id": "57c826d022fcfa0012ae9ae9",
 				"label": "Containers Runtime",
-				"price": 22.0
+				"price": 2200
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aea",
 				"label": "Addons",
-				"price": 0.0
+				"price": 0
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aeb",
-				"label": "Free Trial 2016-06-02 15:07 -> 2016-09-30 15:07",
-				"price": -22.0
+				"label": "Free Trial 2020-06-02 15:07 -> 2020-09-30 15:07",
+				"price": -2200
 			}
 		],
 		"detailed_items": [
 			{
 				"id": "57c826d022fcfa0012ae9aec",
 				"label": "Containers - type: web- size: M",
-				"price": 0.0,
+				"price": 0,
 				"app": "example-app"
 			},
 			{
 				"id": "57c826d022fcfa0012ae9aed",
 				"label": "Containers - type: web- size: S",
-				"price": 7.25,
+				"price": 725,
 				"app": "example-app"
 			},
 			// …
