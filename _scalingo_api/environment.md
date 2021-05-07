@@ -96,6 +96,8 @@ Response
 
 ## Add environment variables to an app
 
+There is a limit of 64 characters for the name of the variables and 8192 for values.
+
 --- row ---
 
 `POST https://$SCALINGO_API_URL/v1/apps/[:app]/variables`
