@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.6.1'
 
 gem 'jekyll', '~> 3.8.4'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.3'
 gem 'rack-jekyll', '~> 0.5.0'
 gem 'rack-rewrite', '~> 1.5', '>= 1.5.1'
 gem 'rake', '~> 12.3'
