@@ -1,17 +1,17 @@
 source 'https://rubygems.org'
-ruby '2.6.1'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+ruby '3.0.1'
 
-gem 'jekyll', '~> 3.8.4'
-gem 'puma', '~> 4.3'
-gem 'rack-jekyll', '~> 0.5.0'
+gem 'jekyll'
+gem 'puma'
+gem 'rack-jekyll', github: "adaoraul/rack-jekyll"
 gem 'rack-rewrite', '~> 1.5', '>= 1.5.1'
-gem 'rake', '~> 12.3'
+gem 'rake'
 gem 'rouge'
+gem "webrick", "~> 1.7"
 
 group :jekyll_plugins do
   gem 'jekyll-feed', '~> 0.6'
   gem 'jekyll-sitemap'
   gem 'jekyll-toc'
 end
-
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
