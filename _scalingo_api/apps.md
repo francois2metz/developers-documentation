@@ -76,7 +76,7 @@ Example object:
 
 ### Parameters
 
-* `app.name`: Should have between 6 and 32 lower case alphanumerical characters
+* `app.name`: Should have between 6 and 48 lower case alphanumerical characters
   and hyphens, it can't have an hyphen at the beginning or at the end, nor two
   hyphens in a row.
 * `app.git_source`: (*Optional*) URL to the future GitHub repository if your need
