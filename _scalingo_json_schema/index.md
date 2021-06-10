@@ -17,6 +17,9 @@ will be interpreted by our platform when someone wants to deploy a project.
 The file must be located at the root of the project and be named either `app.json`
 or `scalingo.json`. The latter will always take priority over the first one.
 
+This JSON manifest is read when deploying a review app or a [one-click
+deploy](https://doc.scalingo.com/platform/deployment/one-click-deploy).
+
 --- row ---
 
 **The manifest attributes**
