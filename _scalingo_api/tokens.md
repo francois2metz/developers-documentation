@@ -186,9 +186,9 @@ Returns 200 OK
 
 --- row ---
 
-## Delete a token
+## Delete a Token
 
-Delete the mentionned token.
+Delete the mentioned token.
 
 --- row ---
 
@@ -204,5 +204,4 @@ curl -H "Accept: application/json" -H "Content-Type: application/json" \
   -X DELETE https://auth.scalingo.com/v1/tokens/7212518c-7eb3-47fd-a6da-a627d767d7eb
 ```
 
-Returns 204 No content
-
+Returns 204 No Content
