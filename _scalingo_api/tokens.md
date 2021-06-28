@@ -184,3 +184,24 @@ Returns 200 OK
 }
 ```
 
+--- row ---
+
+## Delete a Token
+
+Delete the mentioned token.
+
+--- row ---
+
+`DELETE https://auth.scalingo.com/v1/tokens/[:token_id]`
+
+||| col |||
+
+Example request
+
+```sh
+curl -H "Accept: application/json" -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $BEARER_TOKEN" \
+  -X DELETE https://auth.scalingo.com/v1/tokens/7212518c-7eb3-47fd-a6da-a627d767d7eb
+```
+
+Returns 204 No Content
