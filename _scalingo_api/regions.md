@@ -10,14 +10,15 @@ layout: default
 **Region Attributes**
 
 {:.table}
-| field           | type   | description                                    |
-| --------------- | ------ | ---------------------------------------------- |
-| name            | string | Underscore-cased name of the region            |
-| display_name    | string | How the name of the region should be displayed |
-| api             | string | URL to the regional API managing apps          |
-| dashboard       | string | URL to the dashboard of the region             |
-| database_api    | string | URL to the regional API managing databases     |
-| ssh             | string | SSH Host to git push application code          |
+| field           | type    | description                                    |
+| --------------- | ------- | ---------------------------------------------- |
+| name            | string  | Underscore-cased name of the region            |
+| display_name    | string  | How the name of the region should be displayed |
+| api             | string  | URL to the regional API managing apps          |
+| dashboard       | string  | URL to the dashboard of the region             |
+| database_api    | string  | URL to the regional API managing databases     |
+| ssh             | string  | SSH Host to git push application code          |
+| default         | boolean | default region                                 |
 
 ||| col |||
 
@@ -32,7 +33,8 @@ Example object:
          "api" : "https://api.osc-fr1.scalingo.com",
          "dashboard" : "https://my.osc-fr1.scalingo.com",
          "database_api" : "https://db-api.osc-fr1.scalingo.com",
-         "ssh" : "ssh.osc-fr1.scalingo.com:22"
+         "ssh" : "ssh.osc-fr1.scalingo.com:22",
+         "default" : true
       }
    ]
 }
@@ -67,14 +69,16 @@ Returns 200 OK
          "api" : "https://api.osc-fr1.scalingo.com",
          "dashboard" : "https://my.osc-fr1.scalingo.com",
          "database_api" : "https://db-api.osc-fr1.scalingo.com",
-         "ssh" : "ssh.osc-fr1.scalingo.com:22"
+         "ssh" : "ssh.osc-fr1.scalingo.com:22",
+         "default" : true
        }, {
          "name" : "osc-secnum-fr1",
          "display_name" : "Paris - SecNumCloud - Outscale",
          "api" : "https://api.osc-secnum-fr1.scalingo.com",
          "dashboard" : "https://my.osc-secnum-fr1.scalingo.com",
          "database_api" : "https://db-api.osc-secnum-fr1.scalingo.com",
-         "ssh" : "ssh.osc-secnum-fr1.scalingo.com:22"
+         "ssh" : "ssh.osc-secnum-fr1.scalingo.com:22",
+         "default" : false
        }
    ]
 }
